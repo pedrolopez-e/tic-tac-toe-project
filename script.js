@@ -1,5 +1,6 @@
 let cells = document.querySelectorAll('.cell');
 let cellsArray = Array.from(cells);
+let turn = 'O';
 
 const gameBoard = ( () => {
     
@@ -16,6 +17,11 @@ const gameBoard = ( () => {
     const changeCellContent = (position, value) => {
         if (cellsContent[position] == '') {
             cellsContent[position] = value;
+            if (value == 'X') {
+                turn = 'O';
+            } else {
+                turn = 'X';
+            }
         } else {
             alert("You have to choose an empty cell!!")
         };
@@ -32,3 +38,6 @@ const playerFactory = (symbol) => {
     }
     return {symbol, setSymbol};
 };
+
+const xPlayer = playerFactory('X');
+const oPlayer = playerFactory('O');
