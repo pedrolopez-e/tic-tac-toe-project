@@ -16,8 +16,19 @@ const gameBoard = ( () => {
     const changeCellContent = (position, value) => {
         if (cellsContent[position] == '') {
             cellsContent[position] = value;
+        } else {
+            alert("You have to choose an empty cell!!")
         };
     }
-
     return {showContent, changeCellContent};
 })();
+
+/* The player has to have a symbol, and the setSymbol method*/
+
+const playerFactory = (symbol) => {
+    const setSymbol = () => {
+        gameBoard.changeCellContent(position, symbol);
+        gameBoard.showContent();
+    }
+    return {symbol, setSymbol};
+};
