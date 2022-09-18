@@ -1,15 +1,13 @@
 let cells = document.querySelectorAll('.cell');
-let cellsArray = Array.from(cells);
 let turn = 'O';
 
 const gameBoard = ( () => {
-    
-    let cellsContent = ['X','X','X','X','X','X','X','X','X'];
+    let cellsContent = ['','','','','','','','',''];
 
     const showContent = () => {
         let i = 0;
-        for (let oneCellContent of cellsContent) {
-            cellsArray[i].innerHTML = oneCellContent;
+        for (const cell of cells) {
+            cell.innerHTML = cellsContent[i];
             i++;
         }
     }
@@ -26,13 +24,14 @@ const gameBoard = ( () => {
             alert("You have to choose an empty cell!!")
         };
     }
-    return {showContent, changeCellContent};
+    
+    return {showContent, changeCellContent, cellsContent};
+
 })();
 
-/* The player has to have a symbol, and the setSymbol method*/
 
 const playerFactory = (symbol) => {
-    const setSymbol = () => {
+    const setSymbol = (position) => {
         gameBoard.changeCellContent(position, symbol);
         gameBoard.showContent();
     }
@@ -41,3 +40,24 @@ const playerFactory = (symbol) => {
 
 const xPlayer = playerFactory('X');
 const oPlayer = playerFactory('O');
+
+cells.forEach(cell => {
+    cell.addEventListener('click', (e) => {
+        let position = e.target.getAttribute('data-id');
+        if (turn == 'X') {
+            xPlayer.setSymbol(position);
+        } else {
+            oPlayer.setSymbol(position);
+        };
+    });
+})
+
+
+
+/*cells.forEach(cell => cell.addEventListener('clic', (e) => {
+    if (turn == 'X') {
+        xPlayer.setSymbol(parseInt(e.target.getAttribute('data-id')));
+    } else {
+        oPlayer.setSymbol(parseInt(e.target.getAttribute('data-id')));
+    };
+}));*/
