@@ -3,6 +3,7 @@ let turn = 'O';
 
 const gameBoard = ( () => {
     let cellsContent = ['','','','','','','','',''];
+    let stateOfGame = 'Playing';
 
     const showContent = () => {
         let i = 0;
@@ -11,6 +12,46 @@ const gameBoard = ( () => {
             i++;
         }
     }
+
+    const reset = () => {
+        for (let i = 0; i < cellsContent.length; i++) {
+            cellsContent[i] = '';
+        }
+        turn = 'O';
+        stateOfGame = 'Playing';
+        showContent();
+    };
+
+    const checkStateOfTheGame = () => {
+        // Check three in a row
+        for (let i = 0; i <= 6; i+=3) {
+            if ((cellsContent[i] == cellsContent[i+1] && cellsContent[i+1] == cellsContent[i+2]) && cellsContent[i] != '') {
+                stateOfGame = 'Win';
+                break;
+            };
+        }
+        // Check three in a column
+        for (let i = 0; i <= 3; i++) {
+            if ((cellsContent[i] == cellsContent[i+3] && cellsContent[i+3] == cellsContent[i+6]) && cellsContent[i] != '') {
+                stateOfGame = 'Win';
+                break;
+            };
+        }
+        // Check diagonal
+        if ((cellsContent[0] == cellsContent[4] && cellsContent[4] == cellsContent[8] && cellsContent[0] != '') || (cellsContent[2] == cellsContent[4] && cellsContent[4] == cellsContent[6] && cellsContent[2] != '')) {
+            stateOfGame = 'Win';
+        }
+
+        if (stateOfGame == 'Win') {
+            if (turn == 'X'){
+                console.log("Player O wins!");
+            } else {
+                console.log("Player X wins!");
+            }
+            console.log("Play again");
+            reset();
+        }
+    };
 
     const changeCellContent = (position, value) => {
         if (cellsContent[position] == '') {
@@ -23,9 +64,12 @@ const gameBoard = ( () => {
         } else {
             alert("You have to choose an empty cell!!")
         };
+        console.log(cellsContent);
+        showContent();
+        checkStateOfTheGame();
     }
-    
-    return {showContent, changeCellContent, cellsContent};
+
+    return {showContent, changeCellContent, cellsContent, reset};
 
 })();
 
@@ -33,7 +77,7 @@ const gameBoard = ( () => {
 const playerFactory = (symbol) => {
     const setSymbol = (position) => {
         gameBoard.changeCellContent(position, symbol);
-        gameBoard.showContent();
+        /*gameBoard.showContent();*/
     }
     return {symbol, setSymbol};
 };
