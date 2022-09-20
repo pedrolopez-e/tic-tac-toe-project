@@ -64,7 +64,6 @@ const gameBoard = ( () => {
         } else {
             alert("You have to choose an empty cell!!")
         };
-        console.log(cellsContent);
         showContent();
         checkStateOfTheGame();
     }
@@ -77,7 +76,6 @@ const gameBoard = ( () => {
 const playerFactory = (symbol) => {
     const setSymbol = (position) => {
         gameBoard.changeCellContent(position, symbol);
-        /*gameBoard.showContent();*/
     }
     return {symbol, setSymbol};
 };
@@ -96,12 +94,3 @@ cells.forEach(cell => {
     });
 })
 
-
-
-/*cells.forEach(cell => cell.addEventListener('clic', (e) => {
-    if (turn == 'X') {
-        xPlayer.setSymbol(parseInt(e.target.getAttribute('data-id')));
-    } else {
-        oPlayer.setSymbol(parseInt(e.target.getAttribute('data-id')));
-    };
-}));*/
