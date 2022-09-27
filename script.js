@@ -97,10 +97,23 @@ cells.forEach(cell => {
 // Logic to read the form input and afterwards display the names of the players
 
 const form = document.querySelector("form");
+const body = document.querySelector("body");
+var playerXname = document.createElement("h3");
+var playerOname = document.createElement("h3");
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
 } );
+
+form.addEventListener('submit', () => {
+    xPlayer.name = form.querySelector("#player-1").value;
+    oPlayer.name = form.querySelector("#player-2").value;
+    playerXname.innerHTML = xPlayer.name;
+    playerOname.innerHTML = oPlayer.name;
+    body.appendChild(playerXname);
+    body.appendChild(playerOname);
+    form.remove();
+});
 
 
 
