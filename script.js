@@ -94,3 +94,13 @@ cells.forEach(cell => {
     });
 })
 
+// Logic to read the form input and afterwards display the names of the players
+
+const form = document.querySelector("form");
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+} );
+
+
+
