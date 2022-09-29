@@ -58,8 +58,10 @@ const gameBoard = ( () => {
             cellsContent[position] = value;
             if (value == 'X') {
                 turn = 'O';
+                nameText.innerHTML = oPlayer.name + "'s turn";
             } else {
                 turn = 'X';
+                nameText.innerHTML = xPlayer.name + "'s turn";
             }
         } else {
             alert("You have to choose an empty cell!!")
@@ -101,6 +103,8 @@ const body = document.querySelector("body");
 var playerXname = document.createElement("h3");
 var playerOname = document.createElement("h3");
 
+let nameText = body.querySelector("p");
+
 form.addEventListener('submit', (e) => {
     e.preventDefault();
 } );
@@ -110,8 +114,7 @@ form.addEventListener('submit', () => {
     oPlayer.name = form.querySelector("#player-2").value;
     playerXname.innerHTML = xPlayer.name;
     playerOname.innerHTML = oPlayer.name;
-    body.appendChild(playerXname);
-    body.appendChild(playerOname);
+    nameText.innerHTML = oPlayer.name + "'s turn";
     form.remove();
 });
 
