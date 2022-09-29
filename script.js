@@ -1,4 +1,5 @@
 let cells = document.querySelectorAll('.cell');
+const winAlert = document.createElement("div");
 let turn = 'O';
 
 const gameBoard = ( () => {
@@ -19,6 +20,7 @@ const gameBoard = ( () => {
         }
         turn = 'O';
         stateOfGame = 'Playing';
+        body.removeChild(winAlert);
         showContent();
     };
 
@@ -43,13 +45,13 @@ const gameBoard = ( () => {
         }
 
         if (stateOfGame == 'Win') {
+            winAlert.setAttribute("id", "win-alert");
             if (turn == 'X'){
-                console.log("Player O wins!");
+                winAlert.innerHTML = oPlayer.name + " wins!";
             } else {
-                console.log("Player X wins!");
+                winAlert.innerHTML = xPlayer.name + " wins!";
             }
-            console.log("Play again");
-            reset();
+            body.appendChild(winAlert);
         }
     };
 
@@ -118,5 +120,10 @@ form.addEventListener('submit', () => {
     form.remove();
 });
 
+const resetButton = document.querySelector("#reset-button");
+
+resetButton.addEventListener('click', () => {
+    gameBoard.reset();
+});
 
 
