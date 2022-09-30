@@ -1,5 +1,6 @@
 let cells = document.querySelectorAll('.cell');
 const winAlert = document.createElement("div");
+winAlert.setAttribute("id", "win-alert");
 let turn = 'O';
 
 const gameBoard = ( () => {
@@ -44,8 +45,11 @@ const gameBoard = ( () => {
             stateOfGame = 'Win';
         }
 
+        if (stateOfGame != 'Win' && cellsContent.indexOf("") == -1) {
+            stateOfGame = 'Draw';
+        };
+
         if (stateOfGame == 'Win') {
-            winAlert.setAttribute("id", "win-alert");
             if (turn == 'X'){
                 winAlert.innerHTML = oPlayer.name + " wins!";
             } else {
@@ -53,6 +57,15 @@ const gameBoard = ( () => {
             }
             body.appendChild(winAlert);
         }
+
+        if (stateOfGame != 'Win' && cellsContent.indexOf("") == -1) {
+            stateOfGame = "Draw";
+        }
+
+        if (stateOfGame == 'Draw') {
+            winAlert.innerHTML = "Draw!";
+            body.appendChild(winAlert);
+        };
     };
 
     const changeCellContent = (position, value) => {
@@ -67,12 +80,13 @@ const gameBoard = ( () => {
             }
         } else {
             alert("You have to choose an empty cell!!")
-        };
+        }
         showContent();
         checkStateOfTheGame();
+        
     }
 
-    return {showContent, changeCellContent, cellsContent, reset};
+    return {showContent, changeCellContent, cellsContent, reset, stateOfGame};
 
 })();
 
