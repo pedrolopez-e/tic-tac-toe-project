@@ -11,6 +11,11 @@ const gameBoard = ( () => {
         let i = 0;
         for (const cell of cells) {
             cell.innerHTML = cellsContent[i];
+            if (cellsContent[i] == "X") {
+                cell.style.color = "orange";
+            } else if (cellsContent[i] == "O") {
+                cell.style.color = "rgb(169, 241, 60)";
+            }
             i++;
         }
     }
