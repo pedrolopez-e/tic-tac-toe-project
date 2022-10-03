@@ -7,6 +7,7 @@
     background-color: rgba(2, 124, 133, 0.856);
     font-family: 'Roboto Mono', monospace;
     color: white;
+    z-index: 1;
 }
 
 body {
@@ -77,10 +78,45 @@ input:focus {
     width: 100px;
     height: 25px;
     margin-top: 10px;
+    border-radius: 20px;
 }
 
 #submit:hover {
     transition-duration: 250ms;
     background-color: rgb(1, 76, 82);
+    cursor: pointer;
+}
+
+#win-alert {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    padding-top: 40vh;
+    font-size: 5em;
+}
+
+#reset-button {
+    z-index: 2;
+    width: 100px;
+    height: 30px;
+    border-radius: 20px;
+    border: none;
+    background-color: rgb(3, 102, 109);
+    font-weight: 600;
+    margin-top: 40px;
+}
+
+#reset-button:hover {
+    transition-duration: 250ms;
+    background-color: rgb(1, 76, 82);
+    cursor: pointer;
+}
+
+p {
+    font-weight: 600;
 }
 
