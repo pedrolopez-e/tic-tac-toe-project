@@ -1,7 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&display=swap');
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    background-color: rgba(2, 124, 133, 0.856);
+    font-family: 'Roboto Mono', monospace;
+    color: white;
+}
+
+body {
+    height: 100vh;
+    padding-top: 40px;
 }
 
 #board {
@@ -11,7 +21,7 @@
 }
 
 .cell {
-    border: solid 1px black;
+    border: solid 2px white;
 }
 
 main {
@@ -20,6 +30,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 20px;
 }
 
 header {
@@ -28,8 +39,43 @@ header {
 }
 
 #players-name-form {
-    border: solid 1px black;
     position: absolute;
+    background-color: rgba(2, 124, 133, 0.856);
     margin-left: auto;
     margin-right: auto;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
 }
+
+input {
+    border: none;
+    background-color: rgb(2, 108, 116);
+    border-radius: 3px;
+}
+
+.player-name-input input {
+    padding: 5px;
+}
+
+input:focus {
+    outline: solid white 2px;
+}
+
+#submit {
+    font-weight: 600;
+    width: 100px;
+    height: 25px;
+    margin-top: 10px;
+}
+
+#submit:hover {
+    transition-duration: 250ms;
+    background-color: rgb(1, 76, 82);
+}
+

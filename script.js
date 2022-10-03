@@ -21,6 +21,7 @@ const gameBoard = ( () => {
         }
         turn = 'O';
         stateOfGame = 'Playing';
+        nameText.innerHTML = oPlayer.name + "'s turn";
         body.removeChild(winAlert);
         showContent();
     };
